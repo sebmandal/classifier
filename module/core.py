@@ -1,5 +1,4 @@
 import numpy as np
-import json
 
 
 class Network:
@@ -82,5 +81,11 @@ class Network:
 		delta = activations[-1] - y
 		for i in range(2, len(self.nodes)):
 			delta = np.dot(delta, self.weights[-i + 1].T)
-			activations[-i] -= lr * delta
-		# print('Backpropagation complete.')
+			delta *= activations[-i] * (1 - activations[-i]
+			                            )    # Assuming sigmoid activation
+			self.weights[-i] -= lr * np.outer(activations[-i - 1], delta)
+			self.biases[-i] -= lr * delta
+
+		# update weights and biases for the first layer
+		self.weights[0] -= lr * np.outer(activations[0], delta)
+		self.biases[0] -= lr * delta
