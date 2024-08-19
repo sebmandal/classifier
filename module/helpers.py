@@ -16,3 +16,11 @@ def accuracy(y_true, y_pred) -> float:
 	Calculate the accuracy of the predictions.
 	"""
 	return np.mean(y_true == y_pred)
+
+
+def relu(x):
+	return np.maximum(0, x)
+
+
+def relu_derivative(x):
+	return np.where(x > 0, 1, 0)
