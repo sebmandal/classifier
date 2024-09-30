@@ -6,13 +6,11 @@ class Trainer:
     def __init__(self, model, learning_rate=0.1):
         self.model = model
 
-    def train(self, X_train, y_train, epochs=100):
+    def train(self, X_train, y_train, epochs=100, log_freq=10):
         for epoch in range(epochs):
             y_pred = self.model.forward(X_train)
             loss = compute_loss(y_train, y_pred)
             self.model.backward(X_train, y_train)
-            if epoch % 10 == 0:
-                print(f"Epoch {epoch}, Loss: {loss}")
 
     def evaluate(self, X_test, y_test):
         y_pred = self.model.forward(X_test)
