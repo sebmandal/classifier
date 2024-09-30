@@ -1,7 +1,5 @@
 from sklearn.datasets import fetch_openml
-from module.core import Network
-from module.trainer import Trainer
-from module.utils import preprocess_data
+from module import Network, Trainer, preprocess_data
 
 # Load data
 mnist = fetch_openml("mnist_784")
